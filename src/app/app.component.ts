@@ -7,4 +7,31 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'fall-market';
+
+  filter: "all" | "available" | "unavailable" = "all";
+
+  allItems = [
+    { description: "Bat Ear", available: true, quantity: "3" },
+    { description: "Potion of Sleep", available: true, quantity: "7" },
+    { description: "Harienir Fur", available: false, quantity: "0" },
+    { description: "Eye of Baluk", available: true, quantity: "1" },
+  ];
+
+  get items() {
+    if (this.filter === "all") {
+      return this.allItems;
+    }
+    return this.allItems.filter((item) =>
+      this.filter === "available" ? item.available : !item.available
+    );
+  }
+
+  addItem(description: string, quantity: string) {
+    this.allItems.unshift({
+      description,
+      available: true,
+      quantity
+    });
+  }
+
 }
