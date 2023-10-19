@@ -11,13 +11,14 @@ export class ItemService {
   constructor(private http: HttpClient) {}
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'origin': '*' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json',})
   };
 
   getItems(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
+
   addItem(newItem: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, newItem).pipe();
+    return this.http.post<any>(this.apiUrl, newItem, this.httpOptions);
   }
 }
