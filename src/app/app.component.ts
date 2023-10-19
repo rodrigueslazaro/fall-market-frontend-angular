@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ItemService } from './item.service';
 import { Item } from "./item";
 
 @Component({
@@ -11,12 +12,19 @@ export class AppComponent {
 
   filter: "all" | "available" | "unavailable" = "all";
 
-  allItems = [
-    { description: "Bat Ear", available: true, quantity: "3" },
-    { description: "Potion of Sleep", available: true, quantity: "7" },
-    { description: "Harienir Fur", available: false, quantity: "0" },
-    { description: "Eye of Baluk", available: true, quantity: "1" },
-  ];
+  allItems: any[] = [];
+
+  constructor(private itemService: ItemService) {}
+
+  ngOnInit(): void {
+    this.fetchItems();
+  }
+
+  fetchItems() {
+    this.itemService.getItems().subscribe((data) => {
+      this.allItems = data;
+    });
+  }
 
   get items() {
     if (this.filter === "all") {
@@ -27,11 +35,25 @@ export class AppComponent {
     );
   }
 
-  addItem(description: string, quantity: string) {
-    this.allItems.unshift({
-      description,
-      available: true,
-      quantity
+  addItem(name: string, stock: string, price: string, owner: string) {
+    const s = parseInt(stock, 10);
+    const p = parseInt(price, 10);
+    const o = parseInt(owner, 10);
+
+    const newItem= {
+      name,
+      price: p,
+      stock: s,
+      owner: o
+    }
+    console.log(newItem);
+
+    this.itemService.addItem(newItem).subscribe((response) => {
+      if (response.message) {
+        this.allItems.push(newItem);
+      } else {
+        // Handle the error, e.g., display an error message to the user
+      }
     });
   }
 

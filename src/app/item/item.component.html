@@ -1,34 +1,58 @@
 <div class="item">
   <article class="product-card">
-    <h2>{{item.description}}</h2>
-    <img class="product-img" src="./assets/default.png" alt="item.description">
-  </article>
-  <input
-    [id]="item.description"
-    type="checkbox"
-    (change)="item.available = !item.available"
-    [checked]="item.available" />
-  <label [for]="item.description">{{item.description}}</label>
+    <h2>{{item.name}}</h2>
+    <img
+      class="product-img"
+      src="./assets/{{item.name.toLowerCase().replaceAll(' ', '_')}}.png"
+      alt="{{item.name}}">
 
-  <div class="btn-wrapper" *ngIf="!editable">
-    <button class="btn" (click)="editable = !editable">Edit</button>
-    <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
-  </div>
-
-  <!-- This section shows only if user clicks Edit button -->
-  <div *ngIf="editable">
     <input
-      class="sm-text-input"
-      placeholder="edit item"
-      [value]="item.description"
-      #editedItem
-      (keyup.enter)="saveItem(editedItem.value)" />
+      [id]="item.name"
+      type="checkbox"
+      (change)="item.available = !item.available"
+      [checked]="item.available" />
+    <label [for]="item.name">{{item.name}}</label>
 
-    <div class="btn-wrapper">
-      <button class="btn" (click)="editable = !editable">Cancel</button>
-      <button class="btn btn-save" (click)="saveItem(editedItem.value)">
-        Save
-      </button>
+    <div class="btn-wrapper" *ngIf="!editable">
+      <button class="btn" (click)="editable = !editable">Edit</button>
+      <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
     </div>
-  </div>
+
+    <!-- This section shows only if user clicks Edit button -->
+    <div *ngIf="editable">
+      <input
+        class="sm-text-input"
+        placeholder="edit name"
+        [value]="item.name"
+        #editedName
+        (keyup.enter)="saveItem(editedName.value, editedStock.value, editedPrice.value, editedOwner.value)" />
+      <input
+        class="sm-text-input"
+        placeholder="edit stock"
+        [value]="item.stock"
+        #editedStock
+        (keyup.enter)="saveItem(editedName.value, editedStock.value, editedPrice.value, editedOwner.value)" />
+      <input
+        class="sm-text-input"
+        placeholder="edit price"
+        [value]="item.price"
+        #editedPrice
+        (keyup.enter)="saveItem(editedName.value, editedStock.value, editedPrice.value, editedOwner.value)" />
+      <input
+        class="sm-text-input"
+        placeholder="edit owner"
+        [value]="item.owner"
+        #editedOwner
+        (keyup.enter)="saveItem(editedName.value, editedStock.value, editedPrice.value, editedOwner.value)" />
+
+
+      <div class="btn-wrapper">
+        <button class="btn" (click)="editable = !editable">Cancel</button>
+        <button class="btn btn-save" (click)="saveItem(editedName.value, editedStock.value, editedPrice.value, editedOwner.value)">
+          Save
+        </button>
+      </div>
+    </div>
+
+  </article>
 </div>

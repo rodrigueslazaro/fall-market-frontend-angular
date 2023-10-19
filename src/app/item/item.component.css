@@ -61,6 +61,20 @@ h2 {
   margin: 1rem 0;
 }
 
+.product-card {
+  background-color: #9b5e3e;
+  border: 8px outset #8a4d2d;
+  padding: 2px 16px;
+  transition: background-color 400ms;
+}
+
+.product-card:hover {
+  background-color: #a86348;
+  box-shadow: #571a0b 0 4px;
+  position: relative;
+  top: -2px;
+}
+
 .product-img {
     width: 100px;
     image-rendering: pixelated;

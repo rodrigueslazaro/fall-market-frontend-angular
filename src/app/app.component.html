@@ -1,26 +1,7 @@
 <div class="main">
   <h1>The Fall Market of Eistendor</h1>
-  <h2>What would you like to buy today?</h2>
-
-  <label for="addItemInput">Item</label>
-
-  <input
-    #newItem
-    placeholder="add an item"
-    (keyup.enter)="addItem(newItem.value, newStock.value); newItem.value = ''"
-    class="lg-text-input"
-    id="addItemInput" />
-
-  <label for="addQuantityInput">Stock</label>
-
-  <input
-    #newStock
-    placeholder="add quantity"
-    (keyup.enter)="addItem(newItem.value, newStock.value); newItem.value = ''"
-    class="lg-text-input"
-    id="addQuantityInput" />
-
-  <button class="btn-primary" (click)="addItem(newItem.value, newStock.value)">Add</button>
+  <h2>The Witches' Delight!</h2>
+  <h3>All the ingredients for your jinxes and curses!</h3>
 
   <h2>
     {{items.length}}
@@ -34,4 +15,43 @@
     </li>
   </ul>
 
+  <label for="addItemInput">Item</label>
+
+  <input
+    #item
+    placeholder="add an item"
+    (keyup.enter)="addItem(item.value, stock.value, price.value, owner.value); item.value = ''"
+    class="lg-text-input"
+    id="addItemInput" />
+
+  <label for="addQuantityInput">Stock</label>
+
+  <input
+    #stock
+    placeholder="add quantity"
+    (keyup.enter)="addItem(item.value, stock.value, price.value, owner.value); item.value = ''"
+    class="lg-text-input"
+    id="addQuantityInput" />
+
+  <label for="addPriceInput">Price</label>
+
+  <input
+    #price
+    placeholder="add price"
+    (keyup.enter)="addItem(item.value, stock.value, price.value, owner.value); item.value = ''"
+    class="lg-text-input"
+    id="addPriceInput" />
+
+
+  <label for="addOwnerInput">Stock</label>
+
+  <input
+    #owner
+    placeholder="add owner"
+    (keyup.enter)="addItem(item.value, stock.value, price.value, owner.value); item.value = ''"
+    class="lg-text-input"
+    id="addOwnerInput" />
+
+
+  <button class="btn-primary" (click)="addItem(item.value, stock.value, price.value, owner.value)">Add</button>
 </div>

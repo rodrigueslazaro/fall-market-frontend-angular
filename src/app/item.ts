@@ -1,5 +1,7 @@
 export interface Item {
-  description: string;
+  name: string;
   available: boolean;
-  quantity: string;
+  stock: number;
+  price: number;
+  owner: number;
 }
