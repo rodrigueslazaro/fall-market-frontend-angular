@@ -1,6 +1,6 @@
 <div class="item">
   <article class="product-card">
-    <h2>{{item.name}}</h2>
+    <h2>{{item.name.replaceAll('_', ' ') | titlecase}}</h2>
     <img
       class="product-img"
       src="./assets/{{item.name.toLowerCase().replaceAll(' ', '_')}}.png"
@@ -11,7 +11,7 @@
       type="checkbox"
       (change)="item.available = !item.available"
       [checked]="item.available" />
-    <label [for]="item.name">{{item.name}}</label>
+    <label [for]="item.name">Add to basket!</label>
 
     <div class="btn-wrapper" *ngIf="!editable">
       <button class="btn" (click)="editable = !editable">Edit</button>

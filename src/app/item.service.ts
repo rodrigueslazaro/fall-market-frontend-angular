@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ItemService {
-  private apiUrl = 'http://localhost:3000/api/items'; // Update with your server URL
+  private apiUrl = 'http://localhost:3000/api/items';
 
   constructor(private http: HttpClient) {}
 
@@ -19,6 +19,6 @@ export class ItemService {
   }
 
   addItem(newItem: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, newItem, this.httpOptions);
+    return this.http.get<any>(this.apiUrl+"/new", newItem);
   }
 }
