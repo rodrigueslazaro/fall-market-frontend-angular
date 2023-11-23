@@ -19,6 +19,6 @@ export class ItemService {
   }
 
   addItem(newItem: any): Observable<any> {
-    return this.http.get<any>(this.apiUrl+"/new", newItem);
+    return this.http.post<any>(this.apiUrl, newItem);
   }
 }
